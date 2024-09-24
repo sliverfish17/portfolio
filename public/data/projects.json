@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Idesn",
+    "description": "Description of Project One",
+    "technologies": ["Nuxt.js", "Vue.js", "Tailwind CSS"],
+    "thumbnail": "/images/idesn.png"
+  },
+  {
+    "id": 2,
+    "name": "Project Two",
+    "description": "Description of Project Two",
+    "technologies": ["JavaScript", "React", "Next.js"],
+    "thumbnail": "/images/project2.jpg"
+  }
+]
