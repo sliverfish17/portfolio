@@ -76,12 +76,13 @@ onMounted(() => {
       delay: 0.7,
     },
   );
-
-  gsap.fromTo(
-    colors.value,
-    { x: 20, opacity: 0 },
-    { x: 0, opacity: 1, delay: 0.5, duration: 0.5, ease: 'power2.out' },
-  );
+  if (colors.value) {
+    gsap.fromTo(
+      colors.value,
+      { x: 20, opacity: 0 },
+      { x: 0, opacity: 1, delay: 0.5, duration: 0.5, ease: 'power2.out' },
+    );
+  }
 });
 
 const isDarkMode = computed(() => colorMode.value);

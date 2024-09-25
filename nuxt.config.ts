@@ -16,6 +16,8 @@ export default defineNuxtConfig({
   tailwindcss: {
     configPath: 'tailwind.config.js',
   },
-  devtools: { enabled: true },
+  $development: {
+    devtools: { enabled: true },
+  },
   css: ['@/assets/css/main.css'],
 });
