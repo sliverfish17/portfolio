@@ -14,7 +14,7 @@
           <div class="w-px flex-1 bg-accent-light dark:bg-accent-dark"></div>
         </div>
         <div class="grid">
-          <h3 class="text-xl text-primary-dark mb-2 dark:text-primary-light">
+          <h3 class="text-xl max-w-40 text-primary-dark mb-2 dark:text-primary-light">
             ❝ <span class="font-semibold">{{ item.company }}</span> ❞
           </h3>
           <div class="text-lg font-bold min-w-32 text-text-light dark:text-text-dark">
@@ -35,21 +35,28 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-
+import { useNuxtApp } from '#imports';
 const experience = ref(null);
 const loading = ref(true);
 const error = ref(null);
 
 onMounted(async () => {
   try {
-    const res = await fetch('/data/experience.json');
-    if (!res.ok) {
-      throw new Error('Failed to fetch experience data');
-    }
+    const { $contentfulClient } = useNuxtApp();
 
-    experience.value = await res.json();
+    const res = await $contentfulClient.getEntries({
+      content_type: 'experience',
+      order: 'fields.order',
+    });
+
+    experience.value = res.items.map((item) => ({
+      company: item.fields.name,
+      year: item.fields.date,
+      description: item.fields.description,
+      id: item.fields.id,
+    }));
   } catch (err) {
-    error.value = 'Error fetching experience data.';
+    error.value = 'Error fetching experience data from Contentful.';
     console.error(err);
   } finally {
     loading.value = false;

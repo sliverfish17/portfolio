@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        custom: ["'Libre Franklin'", 'sans-serif'],
+        libre: ["'Libre Franklin'", 'sans-serif'],
       },
       colors: {
         primary: {

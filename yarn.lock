@@ -1725,6 +1725,13 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.108.tgz#b794e2b2a85b4c12935ea7d0f18641be68b352f9"
   integrity sha512-fj42LD82fSv6yN9C6Q4dzS+hujHj+pTv0IpRR3kI20fnYeS0ytBpjFO9OjmDowSPPt4lNKN46JLaKbCyP+BW2A==
 
+"@types/node@^22.7.0":
+  version "22.7.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.0.tgz#670aa1874bc836863e5c116f9f2c32416ff27e1f"
+  integrity sha512-MOdOibwBs6KW1vfqz2uKMlxq5xAfAZ98SZjO8e3XnAbFnTJtAspqhWk7hrdSAs9/Y14ZWMiy7/MxMUzAOadYEw==
+  dependencies:
+    undici-types "~6.19.2"
+
 "@types/optimize-css-assets-webpack-plugin@5.0.8":
   version "5.0.8"
   resolved "https://registry.yarnpkg.com/@types/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-5.0.8.tgz#434841c525d3b8fec0130159eacdb6a95b400019"
@@ -5404,7 +5411,7 @@ nuxi@^3.13.2:
   optionalDependencies:
     fsevents "~2.3.3"
 
-nuxt@^3.13.2:
+nuxt@^3.13.0:
   version "3.13.2"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.13.2.tgz#af43a1fb5ccaaf98be0aaeca1bee504eeee24135"
   integrity sha512-Bjc2qRsipfBhjXsBEJCN+EUAukhdgFv/KoIR5HFB2hZOYRSqXBod3oWQs78k3ja1nlIhAEdBG533898KJxUtJw==

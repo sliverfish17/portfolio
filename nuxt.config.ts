@@ -8,6 +8,12 @@ export default defineNuxtConfig({
       },
     },
   },
+  runtimeConfig: {
+    public: {
+      contentfulSpaceId: process.env.NUXT_CONTENTFUL_SPACE_ID,
+      contentfulAccessToken: process.env.NUXT_CONTENTFUL_ACCESS_TOKEN,
+    },
+  },
   colorMode: {
     preference: 'system',
     fallback: 'light',

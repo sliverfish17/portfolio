@@ -11,11 +11,14 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
+      "#app": [".nuxt/types/app/index.d.ts"],
+      "#app/*": [".nuxt/types/app/*"],
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@nuxt/types", "@nuxt/typescript-build", "@types/node"]
+    "types": ["@types/node", "nuxt"]
   },
+  "include": ["types/**/*.d.ts", ".nuxt/types/**/*.ts"],
   "exclude": ["node_modules"],
   "extends": "./.nuxt/tsconfig.json"
 }
