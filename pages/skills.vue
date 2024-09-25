@@ -44,7 +44,7 @@ const fetchSkills = async () => {
       }));
     }
   } catch (error) {
-    console.error('Ошибка загрузки данных из Contentful:', error);
+    console.error(error);
   }
 };
 
