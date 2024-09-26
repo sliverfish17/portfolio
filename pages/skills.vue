@@ -1,14 +1,16 @@
 <template>
-  <div class="skills-page py-16">
+  <div>
     <h2
       class="text-4xl font-bold text-center mb-12 dark:text-primary-light light:text-primary-light"
     >
       Skills
     </h2>
-    <div class="flex flex-wrap justify-center gap-8">
+    <Loader v-if="loading" />
+    <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
+    <div v-else class="flex flex-wrap justify-center gap-8">
       <SkillCard
-        v-for="(category, index) in skillsData"
-        :key="index"
+        v-for="category in skillsData"
+        :key="category.title"
         :title="category.title"
         :skills="category.skills"
       />
@@ -17,36 +19,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useNuxtApp } from '#imports';
-import SkillCard from '../components/ui/SkillCard.vue';
+import SkillCard from '~/components/ui/SkillCard.vue';
+import { useContentful } from '~/composables/useContentful';
+import Loader from '~/components/ui/Loader.vue';
 
-interface SkillCategory {
+interface SkillCategoryFields {
   title: string;
   skills: string[];
+  order: number;
 }
 
-const { $contentfulClient } = useNuxtApp();
+const { data, loading, error, fetchData } = useContentful<SkillCategoryFields>('skillsCategory');
 
-const skillsData = ref<SkillCategory[]>([]);
+onMounted(fetchData);
 
-const fetchSkills = async () => {
-  try {
-    const response = await $contentfulClient.getEntries<SkillCategory>({
-      content_type: 'skillsCategory',
-      order: 'fields.order',
-    });
-
-    if (response.items.length) {
-      skillsData.value = response.items.map((item) => ({
-        title: item.fields.title,
-        skills: item.fields.skills,
-      }));
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-onMounted(fetchSkills);
+const skillsData = computed(
+  () =>
+    data.value?.map((item) => ({
+      title: item.fields.title,
+      skills: item.fields.skills,
+    })) || [],
+);
 </script>

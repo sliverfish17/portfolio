@@ -1,30 +1,44 @@
 <template>
-  <div class="experience-ladder py-8">
+  <Loader v-if="loading" />
+  <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
+  <div v-else-if="data">
     <div class="text-center mb-8">
-      <h2 class="text-3xl mb-4 font-medium font-custom text-text-light dark:text-text-dark">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl mb-4 font-medium font-custom text-text-light dark:text-text-dark"
+      >
         My Experience
       </h2>
     </div>
     <div
-      class="relative flex flex-col items-start pl-10 border-l-4 border-accent-light dark:border-accent-dark space-y-8"
+      class="relative flex flex-col items-start pl-4 sm:pl-10 border-l-2 sm:border-l-4 border-accent-light dark:border-accent-dark space-y-6 sm:space-y-8"
     >
-      <div v-for="item in experience" :key="item.year" class="relative flex items-center space-x-4">
-        <div class="flex justify-center flex-col items-center">
-          <div class="w-3 h-3 rounded-full bg-accent-light dark:bg-accent-dark"></div>
+      <div
+        v-for="item in experience"
+        :key="item.year"
+        class="relative flex max-md:flex-wrap items-start sm:items-center space-x-4 sm:space-x-8"
+      >
+        <div class="justify-center flex-col items-center hidden md:flex">
+          <div class="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-accent-light dark:bg-accent-dark"></div>
           <div class="w-px flex-1 bg-accent-light dark:bg-accent-dark"></div>
         </div>
-        <div class="grid">
-          <h3 class="text-xl max-w-40 text-primary-dark mb-2 dark:text-primary-light">
-            ❝ <span class="font-semibold">{{ item.company }}</span> ❞
+        <div class="md:grid flex justify-center items-center flex-row">
+          <h3
+            class="text-base flex sm:text-lg md:w-32 lg:w-36 justify-center md:text-xl max-w-full text-primary-dark laptop:mb-1 mr-2 md:mr-0 dark:text-primary-light"
+          >
+            ❝ <span class="font-semibold block">{{ item.company }}</span> ❞
           </h3>
-          <div class="text-lg font-bold min-w-32 text-text-light dark:text-text-dark">
+          <div
+            class="text-sm sm:text-base md:text-lg font-bold text-text-light dark:text-text-dark"
+          >
             {{ item.year }}
           </div>
         </div>
-        <hr class="h-px w-5 bg-gray-300 dark:bg-gray-600" />
+        <hr class="h-px w-5 bg-gray-300 dark:bg-gray-600 hidden md:block" />
 
-        <div>
-          <p class="text-gray-500 dark:text-gray-300 text-left max-w-prose">
+        <div class="w-full sm:w-auto mt-2 sm:mt-0">
+          <p
+            class="text-gray-500 dark:text-gray-300 text-left max-w-prose text-xs sm:text-sm md:text-base"
+          >
             {{ item.description }}
           </p>
         </div>
@@ -34,32 +48,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useNuxtApp } from '#imports';
-const experience = ref(null);
-const loading = ref(true);
-const error = ref(null);
+import { onMounted, computed } from 'vue';
+import type { ExperienceFields } from '~/types/experience';
+import Loader from '~/components/ui/Loader.vue';
+const { data, loading, error, fetchData } = useContentful<ExperienceFields>('experience');
 
-onMounted(async () => {
-  try {
-    const { $contentfulClient } = useNuxtApp();
+onMounted(fetchData);
 
-    const res = await $contentfulClient.getEntries({
-      content_type: 'experience',
-      order: 'fields.order',
-    });
-
-    experience.value = res.items.map((item) => ({
+const experience = computed(
+  () =>
+    data.value?.map((item) => ({
       company: item.fields.name,
       year: item.fields.date,
       description: item.fields.description,
       id: item.fields.id,
-    }));
-  } catch (err) {
-    error.value = 'Error fetching experience data from Contentful.';
-    console.error(err);
-  } finally {
-    loading.value = false;
-  }
-});
+    })) || [],
+);
 </script>
