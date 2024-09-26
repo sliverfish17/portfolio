@@ -3,18 +3,12 @@
     <div class="flex items-center gap-4 mb-6">
       <NuxtLink to="/projects" class="text-blue-500 hover:underline">← Back to Projects</NuxtLink>
     </div>
-
-    <!-- Состояние загрузки -->
     <div v-if="loading" class="text-center">
       <p>Loading project details...</p>
     </div>
-
-    <!-- Состояние ошибки, если проект не найден -->
     <div v-else-if="error" class="text-center text-red-500">
       <p>{{ error }}</p>
     </div>
-
-    <!-- Отображение информации о проекте, если найден -->
     <div v-else class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
       <img
         :src="project.thumbnail"

@@ -6,7 +6,7 @@
       Skills
     </h2>
     <div class="flex flex-wrap justify-center gap-8">
-      <Card
+      <SkillCard
         v-for="(category, index) in skillsData"
         :key="index"
         :title="category.title"
@@ -18,8 +18,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { useAsyncData, useNuxtApp } from '#imports';
-import Card from '@/components/ui/SkillCard';
+import { useNuxtApp } from '#imports';
+import SkillCard from '../components/ui/SkillCard.vue';
 
 interface SkillCategory {
   title: string;

@@ -28,31 +28,11 @@
 <script lang="ts" setup>
 import Experience from '~/components/ui/Experience.vue';
 import { ref, onMounted } from 'vue';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import { useHead } from '#imports';
+import { mainPageSeo } from '~/constants/seoConfig';
 
-useHead({
-  title: 'Main Page - Oleksii Portfolio',
-  meta: [
-    {
-      name: 'description',
-      content: 'Front-end developer who loves crafting delightful and intuitive web experiences!',
-    },
-    { property: 'og:title', content: 'Oleksii Portfolio - Front-end Developer' },
-    {
-      property: 'og:description',
-      content: 'Crafting delightful and intuitive web experiences as a Front-end Developer.',
-    },
-    { property: 'og:image', content: '/images/avatar.jpg' },
-    { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'Oleksii Portfolio - Front-end Developer' },
-    {
-      name: 'twitter:description',
-      content: 'Crafting delightful and intuitive web experiences as a Front-end Developer.',
-    },
-    { name: 'twitter:image', content: '/images/avatar.jpg' },
-  ],
-});
+useHead(mainPageSeo);
 
 const avatarRef = ref<HTMLElement | null>(null);
 const titleRef = ref<HTMLElement | null>(null);
@@ -85,5 +65,3 @@ onMounted(() => {
   );
 });
 </script>
-
-<style></style>
