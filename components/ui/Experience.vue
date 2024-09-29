@@ -1,8 +1,8 @@
 <template>
   <Loader v-if="loading" />
   <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
-  <div v-else-if="data">
-    <div class="text-center mb-8">
+  <div class="grid justify-center" v-else-if="data">
+    <div class="text-center sm:mb-4 md:mb-6 lg:mb-8">
       <h2
         class="text-2xl sm:text-3xl lg:text-4xl mb-4 font-medium font-custom text-text-light dark:text-text-dark"
       >
@@ -10,7 +10,7 @@
       </h2>
     </div>
     <div
-      class="relative flex flex-col items-start pl-4 sm:pl-10 border-l-2 sm:border-l-4 border-accent-light dark:border-accent-dark space-y-6 sm:space-y-8"
+      class="relative flex flex-col items-start pl-4 sm:pl-8 border-l-2 sm:border-l-4 border-accent-light dark:border-accent-dark space-y-6 sm:space-y-8"
     >
       <div
         v-for="item in experience"

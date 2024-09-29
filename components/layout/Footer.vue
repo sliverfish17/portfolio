@@ -41,9 +41,7 @@ const fetchContacts = async () => {
       contactLinks.value = response.items.map((item) => ({
         name: item.fields.name,
         link: item.fields.link,
-        iconUrl: item.fields.icon.fields.file.url.startsWith('//')
-          ? `https:${item.fields.icon.fields.file.url}`
-          : item.fields.icon.fields.file.url,
+        iconUrl: getContentfulAsset(item.fields.icon),
       }));
     }
   } catch (error) {
@@ -53,14 +51,3 @@ const fetchContacts = async () => {
 
 onMounted(fetchContacts);
 </script>
-
-<style scoped>
-footer {
-  background: var(--tw-bg-opacity) bg-primary-light;
-  color: var(--tw-text-opacity) text-black;
-  /* Make sure footer sticks to the bottom */
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
-</style>

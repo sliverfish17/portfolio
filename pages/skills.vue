@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import SkillCard from '~/components/ui/SkillCard.vue';
+const SkillCard = defineAsyncComponent(() => import('~/components/ui/SkillCard.vue'));
 import { useContentful } from '~/composables/useContentful';
 import Loader from '~/components/ui/Loader.vue';
 import { skillsPageSeo } from '~/constants/seoConfig';

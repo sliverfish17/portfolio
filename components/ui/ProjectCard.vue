@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="card"
     class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 flex flex-col"
   >
     <NuxtImg
@@ -11,12 +12,12 @@
       height="400"
       lazy
     />
-    <h2 class="text-xl font-semibold mb-2 dark:text-primary-light">{{ name }}</h2>
-    <p class="text-gray-700 dark:text-primary-light mb-4">{{ description }}</p>
+    <h2 ref="title" class="text-xl font-semibold mb-2 dark:text-primary-light">{{ name }}</h2>
+    <p ref="descriptionEl" class="text-gray-700 dark:text-primary-light mb-4">{{ description }}</p>
 
     <div class="mb-4 flex-grow">
-      <h3 class="font-medium text-sm dark:text-primary-light">Technologies:</h3>
-      <ul class="flex flex-wrap gap-2 mt-2">
+      <h3 ref="techTitle" class="font-medium text-sm dark:text-primary-light">Technologies:</h3>
+      <ul ref="techList" class="flex flex-wrap gap-2 mt-2">
         <li
           v-for="tech in technologies"
           :key="tech"
@@ -41,7 +42,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps, onMounted, ref } from 'vue';
+import gsap from 'gsap';
 
 interface ProjectCardProps {
   name: string;
@@ -52,4 +54,43 @@ interface ProjectCardProps {
 }
 
 defineProps<ProjectCardProps>();
+
+const title = ref<HTMLElement | null>(null);
+const descriptionEl = ref<HTMLElement | null>(null);
+const techTitle = ref<HTMLElement | null>(null);
+const techList = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+  gsap.from(title.value, {
+    opacity: 0,
+    y: -20,
+    duration: 1,
+    ease: 'power2.out',
+  });
+
+  gsap.from(descriptionEl.value, {
+    opacity: 0,
+    y: 20,
+    duration: 1,
+    ease: 'power2.out',
+    delay: 0.2,
+  });
+
+  gsap.from(techTitle.value, {
+    opacity: 0,
+    x: -20,
+    duration: 1,
+    ease: 'power2.out',
+    delay: 0.4,
+  });
+
+  gsap.from(techList.value, {
+    opacity: 0,
+    y: 10,
+    stagger: 0.1,
+    duration: 0.8,
+    ease: 'power2.out',
+    delay: 0.6,
+  });
+});
 </script>

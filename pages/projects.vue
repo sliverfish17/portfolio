@@ -25,9 +25,10 @@ import { ref, onMounted, computed } from 'vue';
 import { useContentful } from '~/composables/useContentful';
 import gsap from 'gsap';
 import Loader from '~/components/ui/Loader.vue';
-import ProjectCard from '~/components/ui/ProjectCard.vue';
+const ProjectCard = defineAsyncComponent(() => import('~/components/ui/ProjectCard.vue'));
 import type { ContentfulAsset } from '~/types/contentful';
 import { projectsPageSeo } from '~/constants/seoConfig';
+
 interface ProjectFields {
   name: string;
   technologies: string[];
