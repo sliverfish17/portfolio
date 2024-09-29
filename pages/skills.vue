@@ -22,6 +22,7 @@
 import SkillCard from '~/components/ui/SkillCard.vue';
 import { useContentful } from '~/composables/useContentful';
 import Loader from '~/components/ui/Loader.vue';
+import { skillsPageSeo } from '~/constants/seoConfig';
 
 interface SkillCategoryFields {
   title: string;
@@ -32,6 +33,7 @@ interface SkillCategoryFields {
 const { data, loading, error, fetchData } = useContentful<SkillCategoryFields>('skillsCategory');
 
 onMounted(fetchData);
+useHead(skillsPageSeo);
 
 const skillsData = computed(
   () =>

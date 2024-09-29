@@ -1,9 +1,24 @@
 export interface ContentfulFile {
   url: string;
+  details?: {
+    size?: number;
+    image?: {
+      width: number;
+      height: number;
+    };
+  };
+  fileName?: string;
+  contentType?: string;
 }
 
-export interface ContentfulAsset<T = ContentfulFile> {
-  fields: T;
+export interface ContentfulAsset {
+  fields: {
+    file: ContentfulFile;
+  };
+  sys?: {
+    id: string;
+    type: string;
+  };
 }
 
 export interface ContentfulItem<TFields = Record<string, any>> {

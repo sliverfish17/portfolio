@@ -1,9 +1,9 @@
 import { ref } from 'vue';
 import { useNuxtApp } from '#imports';
-import type { ContentfulResponse, ContentfulItem } from '~/types/contentful';
+import type { ContentfulResponse } from '~/types/contentful';
 
 export function useContentful<TFields>(contentType: string) {
-  const data = ref<ContentfulItem<TFields>[] | null>(null);
+  const data = ref<ContentfulResponse<TFields>['items'] | null>(null);
   const loading = ref(true);
   const error = ref<string | null>(null);
 
