@@ -3,6 +3,7 @@
     <Heading />
     <Projects />
     <Experience />
+    <About />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import Heading from '~/components/ui/Heading.vue';
 import Projects from '~/components/ui/Projects.vue';
 import Experience from '~/components/ui/Experience.vue';
+import About from '~/components/ui/About.vue';
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 import { useHead } from '#imports';

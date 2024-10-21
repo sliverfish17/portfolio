@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import gsap from 'gsap';
 import LinkButton from '~/components/ui/LinkButton.vue';
 
