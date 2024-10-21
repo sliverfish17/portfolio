@@ -1,8 +1,41 @@
 @font-face {
-  font-family: 'Libre Franklin';
-  src:
-    url('/_fonts/LibreFranklin-Regular.woff2') format('woff2'),
-    url('/_fonts/LibreFranklin-Regular.woff') format('woff');
-  font-weight: 400;
+  font-family: 'PP Pangaia';
+  src: url('/fonts/PPPangaia-Bold.otf') format('opentype');
+  font-weight: 700;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Pangaia';
+  src: url('/fonts/PPPangaia-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PP Pangaia';
+  src: url('/fonts/PPPangaia-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Pangaia';
+  src: url('/fonts/PPPangaia-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PP Pangaia';
+  src: url('/fonts/PPPangaia-Ultralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Pangaia';
+  src: url('/fonts/PPPangaia-UltralightItalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
 }

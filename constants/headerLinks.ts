@@ -1,7 +1,5 @@
-import { PAGES } from './pages';
-
 export const HEADER_LINKS = [
-  { name: 'Main', path: PAGES.MAIN },
-  { name: 'Skills', path: PAGES.SKILLS },
-  { name: 'Projects', path: PAGES.PROJECTS },
+  { name: 'Home', path: '#home' },
+  { name: 'Experience', path: '#experience' },
+  { name: 'Contact', path: '#contact' },
 ];

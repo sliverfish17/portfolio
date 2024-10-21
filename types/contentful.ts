@@ -27,4 +27,5 @@ export interface ContentfulItem<TFields = Record<string, any>> {
 
 export interface ContentfulResponse<TFields = Record<string, any>> {
   items: ContentfulItem<TFields>[];
+  total: number;
 }

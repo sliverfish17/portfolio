@@ -21,32 +21,6 @@ export const mainPageSeo = {
   ],
 };
 
-export const projectsPageSeo = {
-  title: 'Projects - Portfolio | Front-end Developer',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'A showcase of my projects as a Front-end Developer, demonstrating my skills and expertise across various technologies and frameworks.',
-    },
-    { property: 'og:title', content: 'Projects - Portfolio | Front-end Developer' },
-    {
-      property: 'og:description',
-      content:
-        'Explore my portfolio projects showcasing my work as a Front-end Developer, covering various technologies and experiences.',
-    },
-    { property: 'og:image', content: '/images/avatar.jpg' },
-    { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'Projects - Portfolio | Front-end Developer' },
-    {
-      name: 'twitter:description',
-      content:
-        'Explore my portfolio projects showcasing my work as a Front-end Developer, covering various technologies and experiences.',
-    },
-    { name: 'twitter:image', content: '/images/avatar.jpg' },
-  ],
-};
-
 export const skillsPageSeo = {
   title: 'Skills - Portfolio | Front-end Developer',
   meta: [

@@ -1,168 +1,109 @@
 <template>
   <header
-    ref="header"
-    class="fixed top-0 left-0 w-full bg-primary-light dark:bg-primary-dark text-black dark:text-white shadow-lg z-50 p-4 flex justify-between items-center transition-colors duration-300"
+    class="fixed top-0 left-0 w-full bg-primary-light dark:bg-primary-dark text-text-light dark:text-text-dark py-6 z-50"
   >
-    <div class="flex items-center gap-4">
-      <div
-        ref="logo"
-        class="text-2xl font-bold cursor-pointer dark:hover:text-accent-dark hover:text-blue-500 transition duration-300 transform hover:scale-105"
-      >
-        Portfolio
-      </div>
-    </div>
-    <nav ref="nav" class="hidden md:flex gap-6 text-lg">
-      <NuxtLink
-        v-for="link in HEADER_LINKS"
-        :key="link.path"
-        :to="link.path"
-        class="hover:text-accent-light dark:hover:text-accent-dark transition duration-300"
-        :exact-active-class="'text-accent-light dark:text-accent-dark'"
-      >
-        {{ link.name }}
-      </NuxtLink>
-    </nav>
-    <div class="flex items-center justify-center">
-      <nav
-        v-show="isMobileMenuOpen"
-        ref="mobileMenu"
-        class="fixed top-0 left-0 w-full h-screen bg-primary-light dark:bg-primary-dark flex flex-col items-center justify-center gap-8 z-40"
-      >
-        <NuxtLink
+    <div class="container mx-auto flex items-center justify-between">
+      <button @click="toggleTheme" class="flex items-center">
+        <div
+          :class="[
+            'w-[50px] h-[50px] flex items-center justify-center rounded-full',
+            colorMode === 'dark' ? 'bg-lamp-dark' : 'bg-lamp-light',
+          ]"
+        >
+          <img
+            :src="colorMode === 'dark' ? '/icons/lamp-on.svg' : '/icons/lamp-off.svg'"
+            alt="Theme Toggle Icon"
+            class="w-8 h-8"
+          />
+        </div>
+      </button>
+
+      <nav class="hidden md:flex space-x-10 text-sm">
+        <a
           v-for="link in HEADER_LINKS"
           :key="link.path"
-          :to="link.path"
-          class="text-2xl hover:text-accent-light dark:hover:text-accent-dark transition duration-300"
-          @click="toggleMobileMenu"
-          :exact-active-class="'text-accent-light dark:text-accent-dark underline'"
+          :href="link.path"
+          class="text-xl text-text-light dark:text-text-dark"
         >
           {{ link.name }}
-        </NuxtLink>
+        </a>
       </nav>
-      <button
-        ref="colors"
-        v-if="mounted"
-        @click="toggleTheme"
-        class="max-sm:mr-4 md:mr-0 text-2xl hover:text-accent-light dark:hover:text-accent-dark transition duration-300"
-      >
-        <span v-if="isDarkMode === 'dark'">🌞</span>
-        <span v-else>🌙</span>
+
+      <div>
+        <button
+          class="hidden md:flex items-center gap-3 bg-black text-white py-2 px-4 rounded-full hover:bg-accent-dark"
+        >
+          Resume
+          <img src="/icons/arrow-link.svg" alt="Upload icon" class="w-5 h-5" />
+        </button>
+      </div>
+
+      <button @click="toggleMobileMenu" class="flex md:hidden">
+        <img
+          :src="isMobileMenuOpen ? '/icons/burger-close.svg' : '/icons/burger.svg'"
+          alt="Menu Icon"
+          class="w-8 h-8"
+        />
       </button>
-      <button @click="toggleMobileMenu" class="md:hidden text-2xl dark:text-white text-black z-50">
-        <span v-if="!isMobileMenuOpen">☰</span>
-        <span v-else>✖</span>
-      </button>
+    </div>
+
+    <div
+      v-show="isMobileMenuOpen"
+      ref="mobileMenu"
+      class="fixed top-0 left-0 w-full h-screen bg-primary-light dark:bg-primary-dark flex flex-col items-center justify-center gap-8 z-40 transition-transform duration-500"
+      :class="isMobileMenuOpen ? 'transform translate-y-0' : 'transform -translate-y-full'"
+    >
+      <nav class="flex flex-col items-center justify-center gap-8">
+        <a
+          v-for="link in HEADER_LINKS"
+          :key="link.path"
+          :href="link.path"
+          class="text-2xl hover:text-accent-light dark:hover:text-accent-dark transition duration-300"
+          @click="toggleMobileMenu"
+        >
+          {{ link.name }}
+        </a>
+        <button
+          class="flex items-center gap-3 bg-black text-white py-2 px-4 rounded-full hover:bg-accent-dark"
+        >
+          Resume
+          <img src="/icons/arrow-link.svg" alt="Upload icon" class="w-5 h-5" />
+        </button>
+      </nav>
     </div>
   </header>
 </template>
 
-<script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useColorMode } from '#imports';
-import { gsap } from 'gsap';
 import { HEADER_LINKS } from '~/constants/headerLinks';
 
 const colorMode = useColorMode();
-
-const mounted = ref(false);
 const isMobileMenuOpen = ref(false);
-
-const header = ref(null);
-const logo = ref(null);
-const nav = ref(null);
-const colors = ref(null);
 const mobileMenu = ref(null);
 
-const toggleMobileMenu = () => {
-  if (isMobileMenuOpen.value) {
-    gsap.to(mobileMenu.value, {
-      y: '-100%',
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power3.in',
-      onComplete: () => {
-        isMobileMenuOpen.value = false;
-        document.body.classList.remove('overflow-hidden');
-      },
-    });
-  } else {
-    isMobileMenuOpen.value = true;
-    document.body.classList.add('overflow-hidden');
+const toggleTheme = () => {
+  colorMode.preference = colorMode.preference === 'light' ? 'dark' : 'light';
+};
 
-    gsap.fromTo(
-      mobileMenu.value,
-      { y: '-100%', opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' },
-    );
-  }
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+  document.body.classList.toggle('overflow-hidden', isMobileMenuOpen.value);
 };
 
 const handleResize = () => {
   if (window.innerWidth >= 768 && isMobileMenuOpen.value) {
-    gsap.to(mobileMenu.value, {
-      y: '-100%',
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power3.in',
-      onComplete: () => {
-        isMobileMenuOpen.value = false;
-        document.body.classList.remove('overflow-hidden');
-      },
-    });
+    isMobileMenuOpen.value = false;
+    document.body.classList.remove('overflow-hidden');
   }
 };
 
 onMounted(() => {
-  mounted.value = true;
   window.addEventListener('resize', handleResize);
-  gsap.fromTo(
-    header.value,
-    { y: -80, opacity: 0 },
-    { y: 0, opacity: 1, duration: 1, ease: 'bounce' },
-  );
-
-  gsap.fromTo(
-    logo.value,
-    { x: -20, opacity: 0 },
-    { x: 0, opacity: 1, delay: 0.5, duration: 0.5, ease: 'power2.out' },
-  );
-
-  gsap.fromTo(
-    nav.value,
-    { y: -20, opacity: 0 },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: 'power2.out',
-      stagger: 0.2,
-      delay: 0.7,
-    },
-  );
-
-  if (colors.value) {
-    gsap.fromTo(
-      colors.value,
-      { x: 20, opacity: 0 },
-      { x: 0, opacity: 1, delay: 0.5, duration: 0.5, ease: 'power2.out' },
-    );
-  }
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize);
 });
-
-const isDarkMode = computed(() => colorMode.value);
-
-const toggleTheme = () => {
-  gsap.to(colors.value, {
-    rotation: '+=360',
-    duration: 0,
-    ease: 'power2.inOut',
-    onComplete: () => {
-      colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark';
-    },
-  });
-};
 </script>

@@ -1,49 +1,51 @@
 <template>
-  <div
-    ref="card"
-    class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 flex flex-col"
-  >
-    <NuxtImg
-      :src="thumbnail"
-      alt="Project Thumbnail"
-      class="w-full h-48 object-cover rounded-lg mb-4 transition-transform duration-300 border border-gray-300 dark:border-gray-700"
-      sizes="(max-width: 768px) 100vw, 33vw"
-      width="600"
-      height="400"
-      lazy
-    />
-    <h2 ref="title" class="text-xl font-semibold mb-2 dark:text-primary-light">{{ name }}</h2>
-    <p ref="descriptionEl" class="text-gray-700 dark:text-primary-light mb-4">{{ description }}</p>
-
-    <div class="mb-4 flex-grow">
-      <h3 ref="techTitle" class="font-medium text-sm dark:text-primary-light">Technologies:</h3>
-      <ul ref="techList" class="flex flex-wrap gap-2 mt-2">
+  <div ref="card" class="p-6 rounded-xl transition-all duration-300 transform flex flex-col">
+    <div class="relative group">
+      <NuxtImg
+        :src="thumbnail"
+        alt="Project Thumbnail"
+        class="w-full h-96 object-cover rounded-lg transition-transform shadow-md duration-300 group-hover:blur-sm group-hover:shadow-lg"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        width="770"
+        height="480"
+        lazy
+      />
+      <LinkButton
+        v-if="url"
+        :url="url"
+        icon
+        className="absolute max-w-44 max-h-12 left-1/2 top-1/2 -translate-x-1/2 ease-in -translate-y-1/2 inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black text-white text-base font-semibold rounded-lg"
+      >
+        Live demo
+      </LinkButton>
+    </div>
+    <div class="flex mb-4 mt-7 justify-between items-center">
+      <h2
+        ref="title"
+        class="font-pangaia font-medium text-left text-4xl dark:text-orange-50 text-text-light"
+      >
+        {{ name }}
+      </h2>
+      <ul ref="techList" class="flex flex-wrap place-content-end max-w-80 gap-2">
         <li
           v-for="tech in technologies"
           :key="tech"
-          class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full"
+          class="rounded-full uppercase border dark:border-text-dark border-text-light px-3 dark:text-text-dark text-text-light italic"
         >
           {{ tech }}
         </li>
       </ul>
     </div>
-
-    <div class="mt-auto">
-      <a
-        :href="url"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block w-full text-center px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300 bg-accent-light hover:bg-yellow-600 dark:bg-accent-dark text-white dark:hover:bg-yellow-400"
-      >
-        Visit Project
-      </a>
-    </div>
+    <p ref="descriptionEl" class="dark:text-grey text-lg text-text-light text-left">
+      {{ description }}
+    </p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps, onMounted, ref } from 'vue';
 import gsap from 'gsap';
+import LinkButton from '~/components/ui/LinkButton.vue';
 
 interface ProjectCardProps {
   name: string;

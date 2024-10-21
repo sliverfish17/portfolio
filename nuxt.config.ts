@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   fonts: {
     google: {
       families: {
-        'Libre Franklin': [400, 500, 600, 700],
+        'Space+Mono': [400, 700],
       },
     },
   },
@@ -26,5 +26,5 @@ export default defineNuxtConfig({
   $development: {
     devtools: { enabled: true },
   },
-  css: ['@/assets/css/main.css'],
+  css: ['@/assets/css/main.css', '@/public/fonts/index.css'],
 });

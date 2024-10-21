@@ -1,32 +1,14 @@
 <template>
   <div class="text-center grid place-items-center gap-8 px-4">
-    <NuxtImg
-      ref="avatarRef"
-      src="/images/avatar.jpg"
-      alt="Profile Avatar"
-      class="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64"
-      format="webp"
-      sizes="(max-width: 640px) 100vw, 256px"
-    />
-    <h1
-      ref="titleRef"
-      class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl dark:text-primary-light opacity-0"
-    >
-      Hello, my name is Oleksii!
-    </h1>
-    <p
-      ref="descriptionRef"
-      class="dark:text-primary-light max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl text-base sm:text-lg md:text-xl lg:text-2xl opacity-0"
-    >
-      Front-end developer who loves crafting delightful and intuitive web experiences! 🔱
-    </p>
-    <div ref="experienceRef" class="w-full mx-auto">
-      <Experience />
-    </div>
+    <Heading />
+    <Projects />
+    <Experience />
   </div>
 </template>
 
 <script lang="ts" setup>
+import Heading from '~/components/ui/Heading.vue';
+import Projects from '~/components/ui/Projects.vue';
 import Experience from '~/components/ui/Experience.vue';
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
