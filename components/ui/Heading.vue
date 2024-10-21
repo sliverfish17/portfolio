@@ -1,5 +1,5 @@
 <template>
-  <div class="grid place-items-center mb-20">
+  <div class="grid place-items-center mb-24">
     <h1 class="font-pangaia dark:text-orange-dark text-orange-light font-medium text-9xl">
       Oleksii Kolotenko
     </h1>

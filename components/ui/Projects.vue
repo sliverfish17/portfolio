@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mb-20">
+  <div class="container mx-auto mb-24">
     <Loader v-if="loading && !projects.length" />
     <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
     <div v-else-if="projects.length === 0" class="text-center text-gray-500">

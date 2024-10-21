@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mb-20">
+  <div class="container mx-auto mb-24">
     <div class="flex w-full justify-center gap-24 items-center">
       <div class="flex flex-col max-w-lg text-left">
         <h2 class="font-pangaia font-medium text-5xl mb-6 dark:text-text-dark text-text-light">
@@ -16,7 +16,7 @@
       <img
         src="/images/avatar.jpg"
         alt="Project Thumbnail"
-        class="max-w-lg max-h-[578px] object-cover rounded-lg transition-transform shadow-md duration-300 group-hover:blur-sm group-hover:shadow-lg"
+        class="max-w-lg max-h-[578px] object-cover rounded-xl transition-transform shadow-md duration-300 group-hover:blur-sm group-hover:shadow-lg"
         sizes="(max-width: 768px) 100vw, 50vw"
         width="512"
         height="480"

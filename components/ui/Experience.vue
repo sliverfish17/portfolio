@@ -1,8 +1,8 @@
 <template>
-  <div class="mb-20">
+  <div class="mb-24">
     <Loader v-if="loading" />
     <span v-else-if="error" class="text-center text-red-500">{{ error }}</span>
-    <div class="flex w-full justify-between" v-else-if="data">
+    <div id="experience" class="flex w-full justify-between" v-else-if="data">
       <div class="hidden lg:flex flex-col justify-center items-center">
         <h2
           class="dark:text-orange-dark text-orange-light font-pangaia text-7xl font-bold -rotate-90 whitespace-nowrap"

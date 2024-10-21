@@ -1,19 +1,24 @@
 <template>
-  <div>
-    <h2
-      class="text-4xl font-bold text-center mb-12 dark:text-primary-light light:text-primary-light"
-    >
-      Skills
-    </h2>
+  <div class="w-full">
     <Loader v-if="loading" />
     <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
-    <div v-else class="flex flex-wrap justify-center gap-8">
-      <SkillCard
-        v-for="category in skillsData"
-        :key="category.title"
-        :title="category.title"
-        :skills="category.skills"
-      />
+    <div v-else class="flex w-full">
+      <div class="flex flex-col gap-24">
+        <div class="flex gap-28">
+          <SkillCard
+            v-for="category in skillsData"
+            :key="category.title"
+            :title="category.title"
+            :skills="category.skills"
+          />
+        </div>
+        <TechnologiesCarousel />
+      </div>
+      <h2
+        class="dark:text-orange-dark text-orange-light font-pangaia text-7xl font-bold rotate-90 whitespace-nowrap"
+      >
+        Technologies
+      </h2>
     </div>
   </div>
 </template>
@@ -23,6 +28,7 @@ const SkillCard = defineAsyncComponent(() => import('~/components/ui/SkillCard.v
 import { useContentful } from '~/composables/useContentful';
 import Loader from '~/components/ui/Loader.vue';
 import { skillsPageSeo } from '~/constants/seoConfig';
+import TechnologiesCarousel from './TechnologiesCarousel.vue';
 
 interface SkillCategoryFields {
   title: string;
