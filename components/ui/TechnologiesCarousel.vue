@@ -9,7 +9,7 @@
         :key="index"
         class="technology-icon flex flex-col items-center text-white shrink-0"
       >
-        <img :src="tech.icon" :alt="tech.name" class="h-16 w-16 mb-2" />
+        <img width="64" height="64" :src="tech.icon" :alt="tech.name" class="h-16 w-16 mb-2" />
         <span class="text-lg text-center font-semibold">{{ tech.name }}</span>
       </div>
     </div>

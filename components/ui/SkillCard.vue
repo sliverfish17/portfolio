@@ -12,7 +12,7 @@
       <ul class="text-left space-y-4">
         <li
           v-for="(skill, index) in skills"
-          :key="index"
+          :key="skill"
           class="py-1 dark:text-text-dark text-base font-mono text-text-light"
         >
           {{ skill }}
@@ -23,9 +23,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,11 +37,11 @@ defineProps<{
 
 const cardRef = ref<HTMLElement | null>(null);
 
-onMounted(() => {
+useIntersectionObserver([cardRef], () => {
   if (cardRef.value) {
     gsap.from(cardRef.value, {
-      opacity: 1,
-      y: 0,
+      opacity: 0,
+      y: 20,
       duration: 0.3,
       ease: 'power3.out',
       scrollTrigger: {

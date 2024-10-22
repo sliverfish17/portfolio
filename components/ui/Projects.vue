@@ -1,36 +1,34 @@
 <template>
   <div class="container mx-auto mb-24">
-    <Loader v-if="loading && !projects.length" />
-    <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
-    <div v-else-if="projects.length === 0" class="text-center text-gray-500">
+    <Loader v-if="isLoadingInitial" />
+    <ErrorMessage v-else-if="hasError" :message="error || undefined" customClass="my-custom-error-class" />
+    <div v-else-if="isEmpty" class="text-center text-gray-500">
       No projects available
     </div>
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-14">
-      <ProjectCard
-        v-for="(project, index) in projects"
-        :key="project.id"
-        :name="project.name"
-        :thumbnail="project.thumbnail"
-        :description="project.description"
-        :technologies="project.technologies"
-        :url="project.url"
-        :class="{
-          'md:translate-y-24': index % 2 !== 0,
-        }"
-      />
-    </div>
-    <div v-if="loading && projects.length" class="text-center mt-6">
-      <Loader />
-    </div>
-    <div v-if="projects.length < totalEntries && !loading" class="flex justify-center mt-32">
-      <Button
-        @click="loadMore"
-        :disabled="loading"
-        class-name="bg-text-light text-white border-2 hover:bg-text-light border-white"
-        size="medium"
-      >
-        Load More
-      </Button>
+    <div v-else>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
+        <ProjectCard
+          v-for="(project, index) in projects"
+          :key="project.id"
+          :name="project.name"
+          :thumbnail="project.thumbnail"
+          :description="project.description"
+          :technologies="project.technologies"
+          :url="project.url"
+          :class="{ 'md:translate-y-24': index % 2 !== 0 }"
+        />
+      </div>
+      <Loader v-if="loading && projects.length" class="text-center mt-6" />
+      <div v-if="canLoadMore" class="flex justify-center mt-32">
+        <Button
+          @click="loadMore"
+          :disabled="loading"
+          class-name="bg-text-light text-white border-2 hover:bg-text-light border-white"
+          size="medium"
+        >
+          Load More
+        </Button>
+      </div>
     </div>
   </div>
 </template>
@@ -39,9 +37,10 @@
 import { onMounted, computed } from 'vue';
 import { useContentful } from '~/composables/useContentful';
 import Loader from '~/components/ui/Loader.vue';
+import ErrorMessage from '~/components/ui/ErrorMessage.vue';
 const ProjectCard = defineAsyncComponent(() => import('~/components/ui/ProjectCard.vue'));
 import type { ContentfulAsset } from '~/types/contentful';
-import Button from './Button.vue';
+import Button from '~/components/ui/Button.vue';
 
 interface ProjectFields {
   name: string;
@@ -55,7 +54,9 @@ interface ProjectFields {
 
 const { data, loading, error, fetchData, totalEntries } = useContentful<ProjectFields>('projects');
 
-onMounted(fetchData);
+onMounted(() => {
+  fetchData();
+});
 
 const projects = computed(() => {
   return (
@@ -70,7 +71,12 @@ const projects = computed(() => {
   );
 });
 
-const loadMore = () => {
-  fetchData();
+const isLoadingInitial = computed(() => loading.value && projects.value.length === 0);
+const hasError = computed(() => !!error.value);
+const isEmpty = computed(() => projects.value.length === 0 && !loading.value && !error.value);
+const canLoadMore = computed(() => projects.value.length < totalEntries.value && !loading.value);
+
+const loadMore = async () => {
+  await fetchData();
 };
 </script>

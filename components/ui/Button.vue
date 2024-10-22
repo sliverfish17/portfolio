@@ -25,7 +25,7 @@ interface ButtonProps {
   className?: string;
 }
 
-const props = defineProps<ButtonProps>();
+defineProps<ButtonProps>();
 
 const emit = defineEmits<{
   (e: 'click'): void;

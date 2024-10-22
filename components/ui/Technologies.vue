@@ -1,7 +1,7 @@
 <template>
   <div class="w-full mb-24">
-    <Loader v-if="loading" />
-    <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
+    <Loader v-if="isLoading" />
+    <ErrorMessage v-else-if="hasError" :message="error || undefined" />
     <div v-else class="flex w-full">
       <div class="flex flex-col gap-24">
         <div class="flex gap-28">
@@ -24,11 +24,13 @@
 </template>
 
 <script setup lang="ts">
-const SkillCard = defineAsyncComponent(() => import('~/components/ui/SkillCard.vue'));
+import { defineAsyncComponent, onMounted, computed } from 'vue';
 import { useContentful } from '~/composables/useContentful';
 import Loader from '~/components/ui/Loader.vue';
-import { skillsPageSeo } from '~/constants/seoConfig';
-import TechnologiesCarousel from './TechnologiesCarousel.vue';
+import ErrorMessage from '~/components/ui/ErrorMessage.vue';
+
+const SkillCard = defineAsyncComponent(() => import('~/components/ui/SkillCard.vue'));
+const TechnologiesCarousel = defineAsyncComponent(() => import('./TechnologiesCarousel.vue'));
 
 interface SkillCategoryFields {
   title: string;
@@ -39,13 +41,14 @@ interface SkillCategoryFields {
 const { data, loading, error, fetchData } = useContentful<SkillCategoryFields>('skillsCategory');
 
 onMounted(fetchData);
-useHead(skillsPageSeo);
 
-const skillsData = computed(
-  () =>
-    data.value?.map((item) => ({
-      title: item.fields.title,
-      skills: item.fields.skills,
-    })) || [],
+const skillsData = computed(() =>
+  data.value?.map((item) => ({
+    title: item.fields.title,
+    skills: item.fields.skills,
+  })) || []
 );
+
+const isLoading = computed(() => loading.value && !data.value?.length);
+const hasError = computed(() => !!error.value);
 </script>

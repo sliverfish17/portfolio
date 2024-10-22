@@ -12,45 +12,15 @@
 <script lang="ts" setup>
 import Heading from '~/components/ui/Heading.vue';
 import Projects from '~/components/ui/Projects.vue';
-import Experience from '~/components/ui/Experience.vue';
-import About from '~/components/ui/About.vue';
-import Technologies from '~/components/ui/Technologies.vue';
-import Contact from '~/components/ui/Contact.vue';
-import { ref, onMounted } from 'vue';
-import gsap from 'gsap';
+
+const Experience = defineAsyncComponent(() => import('~/components/ui/Experience.vue'));
+const About = defineAsyncComponent(() => import('~/components/ui/About.vue'));
+const Technologies = defineAsyncComponent(() => import('~/components/ui/Technologies.vue'));
+const Contact = defineAsyncComponent(() => import('~/components/ui/Contact.vue'));
+
 import { useHead } from '#imports';
 import { mainPageSeo } from '~/constants/seoConfig';
 
 useHead(mainPageSeo);
 
-const avatarRef = ref<HTMLElement | null>(null);
-const titleRef = ref<HTMLElement | null>(null);
-const descriptionRef = ref<HTMLElement | null>(null);
-const experienceRef = ref<HTMLElement | null>(null);
-
-onMounted(() => {
-  gsap.fromTo(
-    avatarRef.value,
-    { opacity: 0, scale: 0.8 },
-    { opacity: 1, scale: 1, duration: 1, ease: 'power3.out', delay: 0.3 },
-  );
-
-  gsap.fromTo(
-    titleRef.value,
-    { opacity: 0, y: 20 },
-    { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.5 },
-  );
-
-  gsap.fromTo(
-    descriptionRef.value,
-    { opacity: 0, y: 20 },
-    { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.7 },
-  );
-
-  gsap.fromTo(
-    experienceRef.value,
-    { opacity: 0, y: 20 },
-    { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.9 },
-  );
-});
 </script>
