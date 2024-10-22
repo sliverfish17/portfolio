@@ -1,10 +1,11 @@
 <template>
-  <div class="text-center grid place-items-center gap-8 px-4">
+  <div class="text-center grid place-items-center gap-8">
     <Heading />
     <Projects />
     <Experience />
     <About />
     <Technologies />
+    <Contact/>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import Projects from '~/components/ui/Projects.vue';
 import Experience from '~/components/ui/Experience.vue';
 import About from '~/components/ui/About.vue';
 import Technologies from '~/components/ui/Technologies.vue';
+import Contact from '~/components/ui/Contact.vue';
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 import { useHead } from '#imports';

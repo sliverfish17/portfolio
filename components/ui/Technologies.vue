@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full mb-24">
     <Loader v-if="loading" />
     <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
     <div v-else class="flex w-full">
@@ -15,7 +15,7 @@
         <TechnologiesCarousel />
       </div>
       <h2
-        class="dark:text-orange-dark text-orange-light font-pangaia text-7xl font-bold rotate-90 whitespace-nowrap"
+        class="dark:text-orange-dark -ml-[52px] text-orange-light font-pangaia text-7xl font-bold rotate-90 whitespace-nowrap"
       >
         Technologies
       </h2>
