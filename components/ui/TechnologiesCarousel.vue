@@ -1,5 +1,5 @@
 <template>
-  <section class="py-8 overflow-hidden relative">
+  <div class="py-8 overflow-hidden relative">
     <span
       class="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-primary-light dark:from-primary-dark to-transparent z-10 pointer-events-none"
     />
@@ -16,7 +16,7 @@
     <span
       class="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-primary-light dark:from-primary-dark to-transparent z-10 pointer-events-none"
     />
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">

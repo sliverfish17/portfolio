@@ -1,40 +1,13 @@
-import { defineConfig } from 'eslint-define-config';
-import vue from 'eslint-plugin-vue';
-import tsParser from '@typescript-eslint/parser';
-import tsPlugin from '@typescript-eslint/eslint-plugin';
-import vueEslintParser from 'vue-eslint-parser';
-import prettier from 'eslint-plugin-prettier';
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import pluginVue from 'eslint-plugin-vue';
 
-export default defineConfig([
-  {
-    files: ['*.js', '*.ts', '*.vue'],
-    languageOptions: {
-      ecmaVersion: 2021,
-      sourceType: 'module',
-      parser: tsParser,
-      globals: {
-        window: 'readonly',
-        document: 'readonly',
-        console: 'readonly',
-        module: 'readonly',
-        require: 'readonly',
-        process: 'readonly',
-      },
-    },
-    plugins: {
-      vue,
-      '@typescript-eslint': tsPlugin,
-      prettier,
-    },
-    rules: {
-      ...prettier.configs.recommended.rules,
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-    },
-  },
-  {
-    files: ['*.vue'],
-    languageOptions: {
-      parser: vueEslintParser,
-    },
-  },
-]);
+export default [
+  { files: ['**/*.{js,mjs,cjs,ts,vue}'] },
+  { languageOptions: { globals: globals.browser } },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...pluginVue.configs['flat/essential'],
+  { files: ['**/*.vue'], languageOptions: { parserOptions: { parser: tseslint.parser } } },
+];

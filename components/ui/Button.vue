@@ -2,10 +2,10 @@
   <button
     :class="[
       size,
-      'flex items-center justify-center text-lg font-bold rounded-full focus:outline-none',
+      'flex items-center justify-center font-bold rounded-full focus:outline-none',
       'transition-all ease-in transform-gpu duration-300',
       'text-text-dark bg-orange-light hover:bg-orange-50',
-      size === 'large' ? 'px-10 py-4' : 'px-7 py-3',
+      size === 'large' ? 'px-10 py-4 text-lg sm:text-xl' : 'px-7 py-3 text-base sm:text-lg',
       className,
     ]"
     @click="handleClick"

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center grid place-items-center gap-8">
+  <div class="container grid gap-20 sm:gap-24 md:gap-28 lg:gap-32 xl:gap-36">
     <Heading />
     <Projects />
     <Experience />

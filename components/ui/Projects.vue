@@ -1,12 +1,12 @@
 <template>
-  <div class="container mx-auto mb-24">
+  <div>
     <Loader v-if="isLoadingInitial" />
-    <ErrorMessage v-else-if="hasError" :message="error || undefined" customClass="my-custom-error-class" />
-    <div v-else-if="isEmpty" class="text-center text-gray-500">
+    <ErrorMessage v-else-if="hasError" :message="error || undefined" />
+    <div v-else-if="isEmpty" class="text-center text-gray-500 text-sm md:text-base">
       No projects available
     </div>
     <div v-else>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14">
         <ProjectCard
           v-for="(project, index) in projects"
           :key="project.id"
@@ -19,7 +19,7 @@
         />
       </div>
       <Loader v-if="loading && projects.length" class="text-center mt-6" />
-      <div v-if="canLoadMore" class="flex justify-center mt-32">
+      <div v-if="canLoadMore" class="flex justify-center mt-12 md:mt-36">
         <Button
           @click="loadMore"
           :disabled="loading"
@@ -32,6 +32,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { onMounted, computed } from 'vue';
