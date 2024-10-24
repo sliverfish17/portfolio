@@ -38,7 +38,11 @@
       class="fixed top-0 left-0 w-full h-screen bg-primary-light dark:bg-primary-dark flex flex-col items-center justify-center gap-8 z-40"
       v-show="isMobileMenuVisible"
     >
-      <button v-if="isClient" @click="toggleMobileMenu" class="absolute top-6 right-6 flex items-center">
+      <button
+        v-if="isClient"
+        @click="toggleMobileMenu"
+        class="absolute top-6 right-6 flex items-center"
+      >
         <BurgerCloseIcon :stroke="clientStrokeColor" :size="32" />
       </button>
       <nav class="flex flex-col items-center justify-center gap-8">
@@ -74,7 +78,7 @@ const CV_DOWNLOAD_LINK =
 
 const clientStrokeColor = computed(() => {
   if (!isClient.value) {
-    return '#000000'; 
+    return '#000000';
   }
   return colorMode.value === 'dark' ? '#FFF' : '#000000';
 });
