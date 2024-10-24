@@ -1,23 +1,36 @@
 <template>
-  <footer class="w-full py-3 bg-primary-light dark:bg-primary-dark text-black dark:text-white">
-    <div class="max-w-screen-xl mx-auto px-4 text-center space-y-4">
-      <p class="text-sm dark:text-primary-light text-text-light">You can find me here:</p>
-
-      <div class="flex justify-center gap-4 mt-2">
-        <a
-          v-for="link in contactLinks"
-          :key="link.link"
-          :href="link.link"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-10 h-10 dark:bg-white bg-slate-200 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all transform hover:scale-105 hover:bg-accent-light dark:hover:bg-accent-dark"
+  <footer class="w-full py-8 bg-primary-light dark:bg-primary-dark text-black dark:text-white">
+    <div class="max-w-screen-xl mx-auto px-4 text-center space-y-8">
+      <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10">
+        <p
+          class="font-medium text-2xl md:text-4xl dark:text-text-dark text-text-light font-pangaia"
         >
-          <img :src="link.iconUrl" :alt="link.name" class="w-5 h-5" />
-        </a>
+          You can also find me here
+        </p>
+        <img class="hidden md:block" src="/icons/arrow.svg" />
+        <div class="flex items-center font-pangaia justify-center gap-12">
+          <a
+            v-for="link in contactLinks"
+            :key="link.link"
+            :href="link.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-12 h-12 bg-primary-light dark:bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all transform hover:scale-105"
+          >
+            <img :src="link.iconUrl" :alt="link.name" class="w-6 h-6" />
+          </a>
+        </div>
       </div>
-
-      <p class="text-xs mt-4 dark:text-primary-light text-text-light">
-        © {{ new Date().getFullYear() }}
+      <hr class="w-full mx-auto border-text-dark dark:border-primary-light" />
+      <p class="text-base dark:text-text-dark text-text-light">
+        Designed by
+        <a
+          href="https://sndx.com"
+          target="_blank"
+          class="text-orange-light dark:text-orange-dark underline"
+        >
+          SNDX
+        </a>
       </p>
     </div>
   </footer>

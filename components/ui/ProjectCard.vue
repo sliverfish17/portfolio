@@ -10,14 +10,14 @@
         height="384"
         lazy
       />
-      <LinkButton
+      <UiLinkButton
         v-if="url"
         :url="url"
         icon
         className="absolute max-w-44 max-h-12 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black text-white text-base font-semibold rounded-lg"
       >
         Live demo
-      </LinkButton>
+      </UiLinkButton>
     </div>
 
     <div
@@ -50,7 +50,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useGsap } from '~/composables/useGsap';
-import LinkButton from '~/components/ui/LinkButton.vue';
 
 interface ProjectCardProps {
   name: string;

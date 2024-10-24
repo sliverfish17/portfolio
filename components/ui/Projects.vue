@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Loader v-if="isLoadingInitial" />
-    <ErrorMessage v-else-if="hasError" :message="error || undefined" />
+    <UiLoader v-if="isLoadingInitial" />
+    <UiErrorMessage v-else-if="hasError" :message="error || undefined" />
     <div v-else-if="isEmpty" class="text-center text-gray-500 text-sm md:text-base">
       No projects available
     </div>
@@ -15,19 +15,19 @@
           :description="project.description"
           :technologies="project.technologies"
           :url="project.url"
-          :class="{ 'md:translate-y-24': index % 2 !== 0 }"
+          :class="{ 'lg:translate-y-24': index % 2 !== 0 }"
         />
       </div>
-      <Loader v-if="loading && projects.length" class="text-center mt-6" />
+      <UiLoader v-if="loading && projects.length" class="text-center mt-6" />
       <div v-if="canLoadMore" class="flex justify-center mt-12 md:mt-36">
-        <Button
+        <UiButton
           @click="loadMore"
           :disabled="loading"
           class-name="bg-text-light text-white border-2 hover:bg-text-light border-white"
           size="medium"
         >
           Load More
-        </Button>
+        </UiButton>
       </div>
     </div>
   </div>
@@ -36,11 +36,8 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue';
 import { useContentful } from '~/composables/useContentful';
-import Loader from '~/components/ui/Loader.vue';
-import ErrorMessage from '~/components/ui/ErrorMessage.vue';
 const ProjectCard = defineAsyncComponent(() => import('~/components/ui/ProjectCard.vue'));
 import type { ContentfulAsset } from '~/types/contentful';
-import Button from '~/components/ui/Button.vue';
 
 interface ProjectFields {
   name: string;
