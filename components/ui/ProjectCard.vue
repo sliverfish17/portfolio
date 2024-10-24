@@ -20,12 +20,17 @@
       </LinkButton>
     </div>
 
-    <div ref="content" class="flex flex-col xl:flex-row justify-between items-start sm:items-center mb-4">
-      <h2 ref="title" class="font-pangaia mb-4 xl:mb-0 font-medium text-left text-2xl sm:text-3xl md:text-4xl dark:text-orange-50 text-text-light">
+    <div
+      ref="content"
+      class="flex flex-col xl:flex-row justify-between items-start sm:items-center mb-4"
+    >
+      <h2
+        ref="title"
+        class="font-pangaia mb-4 xl:mb-0 font-medium text-left text-2xl sm:text-3xl md:text-4xl dark:text-orange-50 text-text-light"
+      >
         {{ name }}
       </h2>
-        <ul ref="techList" class="flex flex-wrap xl:place-content-end xl:max-w-80 gap-2">
-
+      <ul ref="techList" class="flex flex-wrap xl:place-content-end xl:max-w-80 gap-2">
         <li
           v-for="tech in technologies"
           :key="tech"
@@ -44,7 +49,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useGsap } from '~/composables/useGsap'; 
+import { useGsap } from '~/composables/useGsap';
 import LinkButton from '~/components/ui/LinkButton.vue';
 
 interface ProjectCardProps {
@@ -63,11 +68,8 @@ const descriptionEl = ref<HTMLElement | null>(null);
 const techList = ref<HTMLElement | null>(null);
 const imageContainer = ref<HTMLElement | null>(null);
 
-useGsap(
-  [title, descriptionEl, techList, imageContainer],
-  {
-    from: { opacity: 0, y: 20 },
-    to: { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
-  }
-);
+useGsap([title, descriptionEl, techList, imageContainer], {
+  from: { opacity: 0, y: 20 },
+  to: { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
+});
 </script>

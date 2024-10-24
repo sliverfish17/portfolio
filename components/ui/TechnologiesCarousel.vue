@@ -2,30 +2,42 @@
   <div class="py-8 overflow-hidden relative">
     <span
       class="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-primary-light dark:from-primary-dark to-transparent z-10 pointer-events-none"
-    />
-    <div ref="tickerContainer" class="ticker-container max-w-5xl flex items-center space-x-24">
+    ></span>
+    <div class="relative overflow-hidden">
       <div
-        v-for="(tech, index) in repeatedTechnologies"
-        :key="index"
-        class="technology-icon flex flex-col items-center text-white shrink-0"
+        ref="marqueeRef"
+        class="will-change-transform flex items-center space-x-8 sm:space-x-12 md:space-x-14 xl:space-x-24"
       >
-        <img width="64" height="64" :src="tech.icon" :alt="tech.name" class="h-16 w-16 mb-2" />
-        <span class="text-lg text-center font-semibold">{{ tech.name }}</span>
+        <div
+          v-for="(tech, index) in duplicatedTechnologies"
+          :key="index"
+          class="technology-icon flex justify-center flex-col items-center text-white shrink-0"
+        >
+          <div class="bg-black p-3 lg:p-4 rounded-full mb-2">
+            <img
+              width="48"
+              height="48"
+              :src="tech.icon"
+              :alt="tech.name"
+              class="h-7 w-7 lg:h-12 lg:w-12"
+            />
+          </div>
+          <span
+            class="text-lg font-pangaia dark:text-text-dark text-text-light text-center font-semibold"
+            >{{ tech.name }}</span
+          >
+        </div>
       </div>
     </div>
     <span
       class="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-primary-light dark:from-primary-dark to-transparent z-10 pointer-events-none"
-    />
+    ></span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Draggable } from 'gsap/Draggable';
-
-gsap.registerPlugin(ScrollTrigger, Draggable);
+import { onMounted, ref } from 'vue';
+import gsap from 'gsap';
 
 const technologies = [
   { name: 'React', icon: '/icons/react.svg' },
@@ -34,23 +46,21 @@ const technologies = [
   { name: 'Nuxt', icon: '/icons/nuxt.svg' },
 ];
 
-const repeatedTechnologies = [...technologies, ...technologies, ...technologies];
+const duplicatedTechnologies = [...technologies, ...technologies];
 
-const tickerContainer = ref(null);
+const marqueeRef = ref(null);
 
-onMounted(async () => {
-  await nextTick();
-
-  const container = tickerContainer.value;
-
-  gsap.to(container, {
-    xPercent: 100,
-    repeat: -1,
-    duration: 30,
-    ease: 'none',
-    modifiers: {
-      xPercent: gsap.utils.wrap(-100, 0),
+onMounted(() => {
+  gsap.fromTo(
+    marqueeRef.value,
+    { x: 0 },
+    {
+      x: '-50%',
+      duration: 20,
+      ease: 'none',
+      repeat: -1,
     },
-  });
+  );
 });
 </script>
+

@@ -16,5 +16,5 @@ interface LinkButtonProps {
   className?: string;
 }
 
- defineProps<LinkButtonProps>();
+defineProps<LinkButtonProps>();
 </script>

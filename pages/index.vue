@@ -5,7 +5,7 @@
     <Experience />
     <About />
     <Technologies />
-    <Contact/>
+    <!-- <Contact/> -->
   </div>
 </template>
 
@@ -22,5 +22,4 @@ import { useHead } from '#imports';
 import { mainPageSeo } from '~/constants/seoConfig';
 
 useHead(mainPageSeo);
-
 </script>

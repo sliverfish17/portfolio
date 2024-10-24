@@ -1,18 +1,26 @@
 <template>
-  <div ref="cardRef" class="dark:text-primary-light w-full max-w-md light:text-primary-light rounded-lg transform transition duration-300">
+  <div
+    ref="cardRef"
+    class="dark:text-primary-light w-full max-w-none lg:max-w-md light:text-primary-light rounded-lg transform transition duration-300"
+  >
     <div class="transform transition-transform duration-300 w-full">
-      <h3 class="text-xl sm:text-2xl font-bold mb-8 font-mono pb-4 border-b border-orange-dark dark:text-orange-dark text-orange-light text-left">
+      <h3
+        class="text-xl sm:text-2xl font-bold mb-8 font-mono pb-4 border-b border-orange-dark dark:text-orange-dark text-orange-light text-left"
+      >
         {{ title }}
       </h3>
       <ul class="text-left space-y-4">
-        <li v-for="(skill) in skills" :key="skill" class="py-1 dark:text-text-dark text-base font-mono text-text-light">
+        <li
+          v-for="skill in skills"
+          :key="skill"
+          class="py-1 dark:text-text-dark text-base font-mono text-text-light"
+        >
           {{ skill }}
         </li>
       </ul>
     </div>
   </div>
 </template>
-
 
 <script setup lang="ts">
 import { ref } from 'vue';

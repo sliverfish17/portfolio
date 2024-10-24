@@ -33,7 +33,6 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import { onMounted, computed } from 'vue';
 import { useContentful } from '~/composables/useContentful';

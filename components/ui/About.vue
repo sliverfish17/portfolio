@@ -1,7 +1,11 @@
 <template>
-  <div class="flex flex-col lg:flex-row w-full max-w-screen-lg mx-auto justify-between items-center gap-10 lg:gap-24">
+  <div
+    class="flex flex-col lg:flex-row w-full mx-auto justify-between items-center gap-10 lg:gap-24"
+  >
     <div class="w-full lg:w-1/2 text-left">
-      <h2 class="font-pangaia font-medium text-4xl sm:text-5xl mb-6 dark:text-text-dark text-text-light">
+      <h2
+        class="font-pangaia font-medium text-4xl sm:text-5xl mb-6 dark:text-text-dark text-text-light"
+      >
         A little about me
       </h2>
       <p class="text-sm md:text-base lg:text-lg dark:text-text-dark text-text-light">
