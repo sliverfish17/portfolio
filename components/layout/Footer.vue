@@ -25,7 +25,7 @@
       <p class="text-base dark:text-text-dark text-text-light">
         Designed by
         <a
-          href="https://sndx.com"
+          :href="DESIGNER_LINK"
           target="_blank"
           class="text-orange-light dark:text-orange-dark underline"
         >
@@ -44,6 +44,8 @@ import type { ContactResponse, MappedContactLink } from '~/types/contacts';
 const contactLinks = ref<MappedContactLink[]>([]);
 
 const { $contentfulClient } = useNuxtApp();
+
+const DESIGNER_LINK = "https://www.behance.net/sndx"
 
 const fetchContacts = async () => {
   try {
