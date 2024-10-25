@@ -8,7 +8,7 @@
           You can also find me here
         </p>
         <img class="hidden md:block" src="/icons/arrow.svg" />
-        <div class="flex items-center font-pangaia justify-center gap-12">
+        <div class="flex items-center font-pangaia justify-center gap-6 sm:gap-12">
           <a
             v-for="link in contactLinks"
             :key="link.link"

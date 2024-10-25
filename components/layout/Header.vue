@@ -1,13 +1,13 @@
 <template>
   <header
-    class="fixed top-0 left-0 w-full bg-primary-light dark:bg-primary-dark text-text-light dark:text-text-dark py-6 z-50"
+    class="fixed top-0 left-0 w-full bg-primary-light shadow-md dark:bg-primary-dark text-text-light dark:text-text-dark py-6 z-20"
   >
     <div class="container px-4 mx-auto flex items-center justify-between">
       <button v-if="isClient" @click="toggleTheme" class="flex items-center">
         <div
           :class="[
             'w-[50px] h-[50px] flex items-center justify-center rounded-full',
-            colorMode.value === 'dark' ? 'bg-lamp-dark' : 'bg-lamp-light',
+            colorMode.value === 'dark' ? 'bg-lamp-dark' : 'bg-gray-300',
           ]"
         >
           <img
@@ -23,7 +23,7 @@
           v-for="link in HEADER_LINKS"
           :key="link.path"
           @click="scrollToSection(link.path)"
-          class="text-xl text-text-light dark:text-text-dark"
+          class="text-xl text-text-light cursor-pointer dark:text-text-dark"
         >
           {{ link.name }}
         </a>
@@ -35,7 +35,7 @@
     </div>
     <div
       ref="mobileMenu"
-      class="fixed top-0 left-0 w-full h-screen bg-primary-light dark:bg-primary-dark flex flex-col items-center justify-center gap-8 z-40"
+      class="fixed top-0 left-0 w-full h-screen bg-primary-light dark:bg-primary-dark flex flex-col items-center justify-center gap-8 z-20"
       v-show="isMobileMenuVisible"
     >
       <button

@@ -12,7 +12,11 @@
     >
       Front-end developer who loves crafting delightful and intuitive web experiences!
     </p>
-    <UiButton size="large" ref="button">Let's discuss!</UiButton>
+    <UiButton size="large" ref="button" @click="openModal">Let's discuss!</UiButton>
+
+    <UiModal :isOpen="isModalOpen" @close="isModalOpen = false">
+      <UiSocialModalContent />
+    </UiModal>
   </div>
 </template>
 
@@ -23,6 +27,11 @@ import gsap from 'gsap';
 const heading = ref(null);
 const paragraph = ref(null);
 const button = ref(null);
+const isModalOpen = ref(false);
+
+const openModal = () => {
+  isModalOpen.value = true;
+};
 
 onMounted(() => {
   gsap.from(heading.value, {
