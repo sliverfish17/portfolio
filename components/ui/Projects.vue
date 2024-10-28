@@ -1,6 +1,10 @@
 <template>
   <div>
-    <UiLoader v-if="isLoadingInitial" />
+    <template v-if="isLoadingInitial">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14">
+        <ProjectCardSkeleton v-for="index in 4" :key="index" class="animate-pulse" />
+      </div>
+    </template>
     <UiErrorMessage v-else-if="hasError" :message="error || undefined" />
     <div v-else-if="isEmpty" class="text-center text-gray-500 text-sm md:text-base">
       No projects available
@@ -19,7 +23,7 @@
         />
       </div>
       <UiLoader v-if="loading && projects.length" class="text-center mt-6" />
-      <div v-if="canLoadMore" class="flex justify-center mt-12 md:mt-36">
+      <div v-if="canLoadMore && !loading" class="flex justify-center mt-12 md:mt-36">
         <UiButton
           @click="loadMore"
           :disabled="loading"
@@ -34,9 +38,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, defineAsyncComponent } from 'vue';
 import { useContentful } from '~/composables/useContentful';
 const ProjectCard = defineAsyncComponent(() => import('~/components/ui/ProjectCard.vue'));
+const ProjectCardSkeleton = defineAsyncComponent(
+  () => import('~/components/ui/ProjectCardSkeleton.vue'),
+);
 import type { ContentfulAsset } from '~/types/contentful';
 
 interface ProjectFields {

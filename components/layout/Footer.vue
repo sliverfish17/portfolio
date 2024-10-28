@@ -7,7 +7,7 @@
         >
           You can also find me here
         </p>
-        <img class="hidden md:block" src="/icons/arrow.svg" />
+        <img alt="Arrow" class="hidden md:block" src="/icons/arrow.svg" />
         <div class="flex items-center font-pangaia justify-center gap-6 sm:gap-12">
           <a
             v-for="link in contactLinks"
@@ -45,7 +45,7 @@ const contactLinks = ref<MappedContactLink[]>([]);
 
 const { $contentfulClient } = useNuxtApp();
 
-const DESIGNER_LINK = "https://www.behance.net/sndx"
+const DESIGNER_LINK = 'https://www.behance.net/sndx';
 
 const fetchContacts = async () => {
   try {

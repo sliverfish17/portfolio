@@ -3,7 +3,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
 
   // Modules
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', '@nuxt/fonts', '@nuxt/image'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode',
+    '@nuxt/fonts',
+    '@nuxt/image',
+    '@nuxt/test-utils/module',
+  ],
 
   // Google Fonts configuration
   fonts: {
