@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <section>
+    <ExperienceSkeleton v-if="loading" />
     <Loader v-if="loading" />
     <span v-else-if="error" class="text-center text-red-500 text-sm md:text-base lg:text-lg">{{
       error
@@ -34,7 +35,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

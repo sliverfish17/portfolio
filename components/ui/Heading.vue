@@ -1,5 +1,5 @@
 <template>
-  <div class="grid place-items-center">
+  <section class="grid place-items-center">
     <h1
       ref="heading"
       class="font-pangaia text-center dark:text-orange-dark text-orange-light font-medium text-5xl sm:text-7xl lg:text-9xl"
@@ -17,7 +17,7 @@
     <UiModal :isOpen="isModalOpen" @close="isModalOpen = false">
       <UiSocialModalContent />
     </UiModal>
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>

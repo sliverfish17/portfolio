@@ -12,7 +12,7 @@
   >
     <span> <slot></slot></span>
     <template v-if="icon">
-      <img class="w-5 ml-2" alt="Link" src="/icons/arrow-link.svg" />
+      <img width="20" height="20" class="w-5 ml-2" alt="Link" src="/icons/arrow-link.svg" />
     </template>
   </button>
 </template>

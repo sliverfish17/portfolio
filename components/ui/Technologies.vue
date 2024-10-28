@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <Loader v-if="isLoading" />
     <ErrorMessage v-else-if="hasError" :message="error || undefined" />
     <div
@@ -30,7 +30,7 @@
         Technologies
       </h2>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

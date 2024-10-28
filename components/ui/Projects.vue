@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <template v-if="isLoadingInitial">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14">
         <ProjectCardSkeleton v-for="index in 4" :key="index" class="animate-pulse" />
@@ -34,7 +34,7 @@
         </UiButton>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

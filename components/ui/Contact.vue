@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     id="contact"
     class="w-full p-10 sm:p-16 md:p-20 dark:bg-orange-dark rounded-2xl bg-orange-light"
   >
@@ -18,7 +18,7 @@
     <UiModal :isOpen="isModalOpen" @close="isModalOpen = false">
       <UiSocialModalContent />
     </UiModal>
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>

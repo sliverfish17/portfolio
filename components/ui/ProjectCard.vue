@@ -7,7 +7,9 @@
         class="w-full h-64 sm:h-80 object-cover rounded-lg transition-transform shadow-md duration-300 group-hover:blur-sm group-hover:shadow-lg"
         sizes="(max-width: 768px) 100vw, 50vw"
         width="676"
+        quality="80"
         height="384"
+        format="webp"
         lazy
       />
       <UiLinkButton

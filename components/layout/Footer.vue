@@ -7,7 +7,7 @@
         >
           You can also find me here
         </p>
-        <img alt="Arrow" class="hidden md:block" src="/icons/arrow.svg" />
+        <img alt="Arrow" width="48" height="48" class="hidden md:block" src="/icons/arrow.svg" />
         <div class="flex items-center font-pangaia justify-center gap-6 sm:gap-12">
           <a
             v-for="link in contactLinks"

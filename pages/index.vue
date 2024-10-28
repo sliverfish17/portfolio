@@ -1,12 +1,12 @@
 <template>
-  <div id="home" class="container grid gap-20 sm:gap-24 md:gap-28 lg:gap-32 xl:gap-36">
+  <main id="home" class="container grid gap-20 sm:gap-24 md:gap-28 lg:gap-32 xl:gap-36">
     <Heading />
     <Projects />
     <Experience />
     <About />
     <Technologies />
     <Contact />
-  </div>
+  </main>
 </template>
 
 <script lang="ts" setup>
