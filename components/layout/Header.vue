@@ -74,7 +74,7 @@ const mobileMenu = ref(null);
 const isClient = ref(false);
 
 const CV_DOWNLOAD_LINK =
-  'https://drive.google.com/uc?export=download&id=1LGf1SMad5VYQHGhuFSVtCs_Ym9qcIV6X';
+  'https://drive.google.com/uc?export=download&id=1HKYZxzvtWlzWdKK73Z7m4d6WpTI2D3tM';
 
 const clientStrokeColor = computed(() => {
   if (!isClient.value) {
